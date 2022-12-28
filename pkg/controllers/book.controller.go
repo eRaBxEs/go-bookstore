@@ -36,7 +36,7 @@ func GetBookById(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreateBook(w http.ResponseWriter, r *http.Request) {
-	CreateBook := models.Book{}
+	CreateBook := &models.Book{}
 	utils.ParseBody(r, CreateBook)
 	b := CreateBook.CreateBook()
 	res, _ := json.Marshal(b)
@@ -60,7 +60,7 @@ func DeleteBook(w http.ResponseWriter, r *http.Request) {
 }
 
 func UpdateBook(w http.ResponseWriter, r *http.Request) {
-	var updateBook models.Book
+	updateBook := &models.Book{}
 	// unmarshalling the json data into a format golang understands
 	utils.ParseBody(r, updateBook)
 	vars := mux.Vars(r)
